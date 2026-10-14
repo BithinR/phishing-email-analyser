@@ -1,116 +1,187 @@
+<div align="center">
+
 # 🛡️ Phishing Email Analyser
 
-A free, privacy-first, **educational** web app that analyses the text of a suspicious
-email for common phishing and social-engineering warning signs — **entirely in the
-visitor's browser**. No server, no database, no accounts, no tracking.
+**Learn to spot phishing — one warning sign at a time.**
 
-> ⚠️ **Educational triage tool only.** This project can *never* definitively tell you
-> whether an email is safe or malicious. It looks for warning signs and gives you an
-> explainable score to help you make a more informed decision. **Never click links or
-> open attachments just to test them.**
+*A privacy-first, browser-only educational tool that dissects suspicious emails and explains exactly what makes them dangerous.*
+
+</div>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/type-static%20site-22c55e" alt="Static site" />
-  <img src="https://img.shields.io/badge/backend-none-22c55e" alt="No backend" />
-  <img src="https://img.shields.io/badge/analysis-100%25%20local-38bdf8" alt="100% local analysis" />
-  <img src="https://img.shields.io/badge/no%20dependencies-22c55e" alt="No dependencies" />
-  <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT license" />
+  <img src="https://img.shields.io/badge/Type-Static%20Web%20App-38bdf8?style=for-the-badge&labelColor=0b0f17" alt="Static web app" />
+  <img src="https://img.shields.io/badge/Analysis-100%25%20In--Browser-22d3ee?style=for-the-badge&labelColor=0b0f17" alt="100% in-browser" />
+  <img src="https://img.shields.io/badge/Privacy-No%20Data%20Leaves%20Device-22c55e?style=for-the-badge&labelColor=0b0f17" alt="No data leaves your device" />
+  <img src="https://img.shields.io/badge/Stack-HTML%20%7C%20CSS%20%7C%20JS-404040?style=for-the-badge&labelColor=0b0f17" alt="HTML CSS JS" />
+  <img src="https://img.shields.io/badge/Dependencies-None-22c55e?style=for-the-badge&labelColor=0b0f17" alt="No dependencies" />
+  <img src="https://img.shields.io/badge/License-MIT-0366d6?style=for-the-badge&labelColor=0b0f17" alt="MIT" />
 </p>
 
-## What it does
+---
 
-Paste a suspicious email (including full headers if you have them) and click
-**Analyse Email**. The tool then shows you:
+> ⚠️ **Educational triage tool — not a security product.** It can *never* say for certain
+> whether an email is safe or malicious. It surfaces warning signs and gives you an
+> explainable score. **Never click links or open attachments just to test them.**
 
-- A **phishing risk score from 0–100**.
-- A **classification**: Low Risk / Suspicious / High Risk.
-- A **plain-English explanation of every warning sign** it found — including how many
-  points each one added to the score and the exact text/link that triggered it.
-- **Practical recommendations** on what to do next.
+## 📌 Project Overview
 
-It detects 22 indicators across these categories:
+The Phishing Email Analyser is a lightweight, fully client-side web app that takes a
+pasted email — including raw headers, if you have them — and returns:
 
-| Category | Examples |
+- a **risk score from 0–100**,
+- a **Low Risk / Suspicious / High Risk** classification,
+- a **plain-English explanation of every warning sign** it found, and
+- **practical recommendations** on what to do next.
+
+Unlike most "email scanners", it uploads nothing. Every rule runs in plain JavaScript
+inside the visitor's browser.
+
+## 🎯 Why This Project?
+
+Phishing is how most real-world breaches start — and it's a *human* problem, not just a
+technical one. This project exists to:
+
+- **Teach** the actual tactics attackers use (urgency, impersonation, credential
+  harvesting, malicious links and attachments).
+- **Prove** that a useful security-education tool can be built with plain HTML/CSS/JS —
+  no backend, no data collection.
+- **Demystify** risk scores by making every point traceable.
+
+## ✨ Features
+
+| Feature | What you get |
 | --- | --- |
-| Urgency & pressure | "act now", "within 24 hours", deadlines |
-| Threats | account suspension, closure, lockout |
-| Credential harvesting | "verify your account", "unlock your account" |
-| Sensitive requests | passwords, one-time codes, MFA codes |
-| Financial requests | gift cards, wire transfer, "change bank details" |
-| Links | suspicious domains, shortened URLs, raw IP addresses, misleading link text, insecure HTTP login |
-| Attachments | executables, macro-enabled files, archives, double extensions |
-| Impersonation | "security team", "IT department", generic greetings |
-| Email headers | SPF / DKIM / DMARC failures, sender vs Reply-To mismatch |
+| 🎚️ Explainable scoring | No black box — every detected indicator is listed with its point value |
+| 🧠 22 indicators | Urgency, threats, credential harvesting, financial requests, links, attachments, impersonation & headers |
+| 🔍 Header-aware | Checks SPF / DKIM / DMARC results and `From` vs `Reply-To` when headers are pasted |
+| 📧 Six sample emails | One-click fictional examples to explore instantly |
+| 📱 Responsive UI | Dark security-dashboard look that works on desktop & mobile |
+| 🔌 Works offline | No network calls — it keeps working after the page loads |
 
-## Privacy (a core design goal)
+## 🧠 How the score works
 
-- ✅ All analysis runs in **plain JavaScript inside the visitor's browser**.
-- ✅ Email text is **never uploaded** to a server, AI provider, analytics service or API.
-- ✅ **No tracking, no telemetry, no external requests.**
-- ✅ It even works **offline** once the page has loaded.
+```
+score = min(100, sum of every detected indicator's points)
+```
 
-## How the score works (no mystery numbers)
+Each of the 22 indicators carries a fixed point value (mild signals score low, critical
+ones score high). The total is capped at 100 and mapped to a band:
 
-Every indicator contributes a **fixed number of points** (mild signals score low,
-serious red flags score high). The app sums the points and caps the total at 100.
-The results screen lists each detected indicator with its point value so you can
-always see *why* the score is what it is. See
-[`WRITEUP.md`](WRITEUP.md) for the full breakdown.
+| Score | Classification |
+| --- | --- |
+| 0–24 | 🟢 Low Risk |
+| 25–59 | 🟠 Suspicious |
+| 60–100 | 🔴 High Risk |
 
-## Quick start (no terminal needed)
+### The 22 detection indicators
+
+| # | Indicator | Points | Severity |
+| --- | --- | ---: | --- |
+| 1 | Urgency / pressure language | 8 | Medium |
+| 2 | Threat of account suspension or closure | 12 | High |
+| 3 | Credential-harvesting language | 15 | High |
+| 4 | Asks for your password | 18 | Critical |
+| 5 | Asks for a verification / one-time code | 18 | Critical |
+| 6 | Requests payment or gift cards | 15 | High |
+| 7 | Asks to change bank / payment details | 20 | Critical |
+| 8 | Unexpected invoice language | 8 | Medium |
+| 9 | Impersonation language | 10 | Medium |
+| 10 | Generic greeting (weak signal) | 4 | Low |
+| 11 | Suspicious URL | 12 | High |
+| 12 | Shortened URL | 8 | Medium |
+| 13 | URL using a raw IP address | 15 | High |
+| 14 | Misleading link text | 12 | High |
+| 15 | Sign-in link over insecure HTTP | 10 | Medium |
+| 16 | Suspicious attachment filename | 10 | High |
+| 17 | Executable attachment type | 18 | Critical |
+| 18 | Requests enabling macros | 18 | Critical |
+| 19 | Sender / Reply-To mismatch | 10 | High |
+| 20 | SPF authentication failure | 10 | High |
+| 21 | DKIM authentication failure | 10 | High |
+| 22 | DMARC authentication failure | 12 | High |
+
+## 📧 Fictional sample emails
+
+Six made-up examples are bundled so you can try it instantly. They all use the reserved
+`.example` top-level domain and documentation IP ranges (`192.0.2.x`), so **none of them
+can point to a real website**.
+
+| Sample | Typical score | Result |
+| --- | ---: | --- |
+| Obvious phishing (lottery / gift card) | 90 | 🔴 High Risk |
+| Sophisticated phishing (spoofed headers) | 100 | 🔴 High Risk |
+| Fake Microsoft 365 account warning | 97 | 🔴 High Risk |
+| Fake parcel-delivery message | 65 | 🔴 High Risk |
+| Fake invoice / BEC | 61 | 🔴 High Risk |
+| Legitimate email | 0 | 🟢 Low Risk |
+
+## 🔐 Privacy & security (a core design goal)
+
+| Promise | How it's guaranteed |
+| --- | --- |
+| No server | It's a static site — there's nothing to upload *to* |
+| No tracking | No analytics, no beacons, no `<img>` tracking pixels |
+| No external calls | The JavaScript makes zero network requests |
+| No storage | Pasted text is never saved or cached |
+
+There is simply **no code path** that can transmit your email. Open the page, go offline,
+and it still works.
+
+## 🚀 Quick start
+
+No terminal, no build step, no install.
 
 1. Download or clone this repository.
 2. Open `index.html` in any modern web browser.
 
-That's it. There is no build step and no install.
+Done. 🎉
 
-## Hosting it for free
-
-This is a **fully static site** (plain HTML, CSS and JavaScript), so you can host it
-for free anywhere static files are served:
-
-- **GitHub Pages** — enable Pages on this repository (Settings → Pages → deploy from
-  the main branch). The site is served from `index.html`.
-- **Netlify Drop** — drag the folder onto [netlify.com](https://netlify.com).
-- **Cloudflare Pages** — connect the repository or upload the folder.
-
-> Note: `index.html`, `styles.css` and `app.js` must stay in the same folder/root.
-
-## Fictional sample emails
-
-Six made-up examples are bundled so you can try it instantly (from the dropdown):
-
-1. Obvious phishing (lottery / gift-card scam)
-2. Sophisticated phishing (with spoofed SPF/DKIM/DMARC headers)
-3. Fake Microsoft 365 account warning
-4. Fake parcel-delivery message
-5. Fake invoice / Business Email Compromise (BEC)
-6. Legitimate email
-
-All use the reserved `.example` top-level domain and documentation IP ranges
-(`192.0.2.x`), so none of them can point to a real website.
-
-## Project structure
+## 🗂️ Repository structure
 
 ```
 phishing-email-analyser/
 ├── index.html      # Page structure, privacy notice, disclaimers
 ├── styles.css      # Appearance (dark theme, responsive)
-├── app.js          # All detection and scoring logic (runs locally)
-├── WRITEUP.md      # Detailed project write-up / how it works
+├── app.js          # All detection & scoring logic (runs locally)
+├── REPORT.md       # Full project report
 ├── LICENSE         # MIT license
 └── README.md       # This file
 ```
 
-## Safety & accuracy
+## 🌐 Host it for free
 
-- This tool **cannot definitively determine** whether an email is malicious.
-- It does **not** claim to be a security product.
-- Users are warned **not** to click links or open attachments to "test" them.
-- Users are advised to verify important messages using an organisation's official
-  website, app, or known contact details.
+This is a fully static site, so any static host works:
 
-## License
+- **GitHub Pages** — Settings → Pages → deploy from `main`.
+- **Netlify Drop** — drag the folder onto [netlify.com](https://netlify.com).
+- **Cloudflare Pages** — connect the repository or upload the folder.
 
-Released under the [MIT License](LICENSE). You are free to use, modify and share it.
+> Keep `index.html`, `styles.css` and `app.js` together in the same root.
+
+## ⚖️ Safety & limitations
+
+- It **cannot definitively determine** whether an email is malicious.
+- It is **not** a replacement for email gateways, antivirus, or a security team.
+- False positives and false negatives are expected.
+- Users are warned **not** to click links or open attachments just to test them, and to
+  verify important messages through official channels.
+
+## 🔗 Resources
+
+- [CISA — Recognize and Report Phishing](https://www.cisa.gov/secure-our-world/recognize-and-report-phishing)
+- [OWASP — Phishing](https://owasp.org/www-community/attacks/Phishing)
+- [DMARC.org — Overview](https://dmarc.org/overview/)
+
+## 👤 Author
+
+**Bithin Krishna Radhakrishnan**
+Cybersecurity enthusiast & independent learner
+
+- GitHub: [github.com/BithinR](https://github.com/BithinR)
+- LinkedIn: [linkedin.com/in/bkr95](https://www.linkedin.com/in/bkr95)
+
+## 📄 License
+
+Released under the [MIT License](LICENSE). Free to use, modify and share.
+
 
