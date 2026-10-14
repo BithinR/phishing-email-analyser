@@ -41,7 +41,7 @@ inside the visitor's browser.
 <div align="center">
 
 <img width="459" height="426" alt="image" src="https://github.com/user-attachments/assets/f07e5c16-a6a5-4107-9804-ad2d5ace2808" />
-`![Phishing Email Analyser](screenshots/app.png)`
+`Phishing Email Analyser`
 
 </div>
 
