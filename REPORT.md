@@ -86,6 +86,16 @@ at this size, and would make the privacy story harder to reason about.
 exactly what this project avoids. Keeping analysis client-side enforces privacy *by
 design*, not by policy.
 
+<div align="center">
+
+# 📸  SCREENSHOT PLACEHOLDER  📸
+
+**ADD A SCREENSHOT OF THE MAIN USER INTERFACE HERE**
+
+*(e.g. `![Phishing Email Analyser — main screen](screenshots/main-screen.png)`)*
+
+</div>
+
 ## 6. Technology Stack
 
 | Layer | Choice | Rationale |
@@ -189,6 +199,16 @@ The six bundled samples exercise different parts of the engine:
 | Legitimate email | 0 | 🟢 Low Risk | *(none)* |
 
 The legitimate sample scores zero, confirming the engine does not flag a normal message.
+
+<div align="center">
+
+# 📸  SCREENSHOT PLACEHOLDER  📸
+
+**ADD SCREENSHOTS OF THE SAMPLE RESULTS HERE**
+
+*(e.g. `![Result: High Risk](screenshots/result-high.png)`)*
+
+</div>
 
 ## 11. Privacy & Data Handling
 

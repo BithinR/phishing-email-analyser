@@ -36,6 +36,18 @@ pasted email — including raw headers, if you have them — and returns:
 Unlike most "email scanners", it uploads nothing. Every rule runs in plain JavaScript
 inside the visitor's browser.
 
+## 📸 Screenshot
+
+<div align="center">
+
+# ⬇️  SCREENSHOT PLACEHOLDER  ⬇️
+
+**ADD A SCREENSHOT OF THE APP HERE**
+
+*(Replace this section with: `![Phishing Email Analyser](screenshots/app.png)`)*
+
+</div>
+
 ## 🎯 Why This Project?
 
 Phishing is how most real-world breaches start — and it's a *human* problem, not just a
