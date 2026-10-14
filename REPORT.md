@@ -202,11 +202,8 @@ The legitimate sample scores zero, confirming the engine does not flag a normal 
 
 <div align="center">
 
-# 📸  SCREENSHOT PLACEHOLDER  📸
+<img width="341" height="434" alt="image" src="https://github.com/user-attachments/assets/884a2a30-c5f3-4160-8b42-dfc2cca05951" />
 
-**ADD SCREENSHOTS OF THE SAMPLE RESULTS HERE**
-
-*(e.g. `![Result: High Risk](screenshots/result-high.png)`)*
 
 </div>
 
