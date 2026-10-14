@@ -40,11 +40,8 @@ inside the visitor's browser.
 
 <div align="center">
 
-# ⬇️  SCREENSHOT PLACEHOLDER  ⬇️
-
-**ADD A SCREENSHOT OF THE APP HERE**
-
-*(Replace this section with: `![Phishing Email Analyser](screenshots/app.png)`)*
+<img width="459" height="426" alt="image" src="https://github.com/user-attachments/assets/f07e5c16-a6a5-4107-9804-ad2d5ace2808" />
+`![Phishing Email Analyser](screenshots/app.png)`
 
 </div>
 
