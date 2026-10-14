@@ -1,0 +1,14 @@
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE folders
+.vscode/
+.idea/
+
+# Node (only if dependencies are ever added)
+node_modules/
+
+# Logs and scratch files
+*.log

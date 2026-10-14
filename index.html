@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phishing Email Analyser</title>
+  <meta name="description" content="A free, privacy-first educational tool that analyses email text for phishing warning signs — entirely in your browser." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">&#128737;&#65039;</div>
+        <div>
+          <h1>Phishing Email Analyser</h1>
+          <p class="tagline">Learn to spot phishing — safely.</p>
+        </div>
+      </div>
+      <div class="privacy-badge" title="Your email text never leaves this page.">
+        <span class="dot" aria-hidden="true"></span>
+        <span>100% in-browser &middot; No data leaves your device</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="disclaimer" role="note">
+      <strong>Educational triage tool.</strong>
+      This analyser can <em>never</em> definitively tell you whether an email is malicious.
+      It looks for common warning signs and gives you an explainable score to help you make a more informed decision.
+      <strong>Never click links or open attachments just to test them.</strong>
+    </section>
+
+    <section class="card input-card">
+      <div class="card-head">
+        <h2>Paste an email to analyse</h2>
+        <div class="sample-wrap">
+          <label for="sample">Load a fictional sample:</label>
+          <select id="sample">
+            <option value="">Choose an example&hellip;</option>
+            <option value="obvious">Obvious phishing</option>
+            <option value="sophisticated">Sophisticated phishing</option>
+            <option value="microsoft">Fake Microsoft 365 warning</option>
+            <option value="parcel">Fake parcel delivery</option>
+            <option value="invoice">Fake invoice / BEC</option>
+            <option value="legit">Legitimate email</option>
+          </select>
+        </div>
+      </div>
+      <textarea id="emailText" spellcheck="false" placeholder="Paste the full email here, including any headers (From, Reply-To, Authentication-Results) if you have them&#8230;"></textarea>
+      <div class="actions">
+        <button id="analyseBtn" class="btn btn-primary" type="button">Analyse Email</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button">Clear</button>
+        <span class="hint">Analysis happens locally in your browser.</span>
+      </div>
+    </section>
+
+    <section id="emptyState" class="card empty-state">
+      <div class="empty-icon" aria-hidden="true">&#128269;</div>
+      <h3>No email analysed yet</h3>
+      <p>Paste an email (or load a fictional sample) and click <strong>Analyse Email</strong> to see a breakdown of the warning signs.</p>
+    </section>
+
+    <section id="results" class="results" hidden aria-live="polite">
+      <!-- Populated by app.js -->
+    </section>
+
+    <section class="card privacy-card">
+      <h2>Privacy notice</h2>
+      <p>
+        All analysis is performed <strong>entirely in your web browser</strong> using plain JavaScript.
+        Your email text is never uploaded to a server, AI provider, analytics service or external API.
+        Nothing you paste is stored, logged or transmitted &mdash; you can even disconnect from the internet
+        after the page loads and it will keep working.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Educational tool for learning about phishing and social engineering. Not a security product. Always verify important messages through official channels.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
